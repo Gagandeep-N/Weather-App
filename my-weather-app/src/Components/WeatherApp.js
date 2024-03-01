@@ -34,8 +34,19 @@ const WeatherApp = () => {
         <button className="clear-button" onClick={clearInput}>
           x
         </button>
-        
       )}
+      </div>
+      <div  className="weather-display">
+      {weather && (
+                <div>
+                    {/* <h2>Weather for {city}</h2> */}
+                    
+                 { console.log("weather",weather.list[0].weather[0].description
+)}
+                   
+                </div>
+            )}
+
       </div>
         </div>
     );
