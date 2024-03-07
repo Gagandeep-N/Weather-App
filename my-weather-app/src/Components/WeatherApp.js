@@ -9,6 +9,7 @@ const WeatherApp = () => {
     const [weather, setWeather] = useState(null);
     const [city, setCity] = useState('');
     const [showWeather, setShowWeather] = useState(false);
+    const [error, setError] = useState('');
     const apiKey = process.env.REACT_APP_API_KEY;
     const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -24,8 +25,9 @@ const WeatherApp = () => {
                 setWeather(response.data);
                 setCity("");
                 setShowWeather(true)
+                setError('')
             })
-            .catch((error) => console.log(error));
+            .catch(() => setError("Invalid city!"));
             
     }
 
@@ -40,7 +42,7 @@ const WeatherApp = () => {
             <h1 className="app-header">Weather</h1>
             <div className="input-clear">
                 <input type="text" placeholder="Enter the city name" value={city} onChange={setCityHandler} className="city-input" />
-                
+                {error && <p className="error">{error}</p>}
             </div>
             <div>
                 <button className="submit-btn" onClick={submitHandler}>Search</button>
